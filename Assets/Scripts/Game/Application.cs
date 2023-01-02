@@ -1,16 +1,24 @@
-﻿using System.Collections.Generic;
+﻿using Platformer.Animations;
+using Platformer.Objects.MegaBow;
+using Platformer.Objects.Player;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Platformer.Game
 {
-    public class Application
-    {    
-        #region Fields
-        private LevelData _levelData;
-        private Sprite _wallSprite;
+    public sealed  class Application
+    {
+        #region
+        private const int quantityHorisontalWalls = 15;
         #endregion
 
-        private readonly Vector2 startPosition = new(-1.5F, -1.5F);
+        #region Fields
+        private readonly LevelData _levelData;
+        private readonly Sprite _wallSprite;
+        private readonly SpriteAnimator _spriteAnimator;
+
+        private readonly Vector2 startPosition = new(-(quantityHorisontalWalls/2), -1F);
+        #endregion
 
         #region Constructors
         public Application(LevelData data)
@@ -19,10 +27,12 @@ namespace Platformer.Game
 
             InstantiateAll();
         }
-        public Application(LevelData data, Sprite wallSprite)
+        public Application(LevelData data, SpriteAnimator spriteAnimator, Sprite wallSprite)
         {
             _levelData = data;
+            _spriteAnimator = spriteAnimator;
             _wallSprite = wallSprite;
+
             InstantiateAll();
             InstantiateMap();
         }
@@ -32,14 +42,17 @@ namespace Platformer.Game
         private void InstantiateAll()
         {
             _levelData.camera = Camera.main;
-            _levelData.player = Object.Instantiate(Inputs.InputResources.Load<SpriteRenderer>("Knight"));
+            _levelData.player = new PlayerController(Inputs.InputResources.Load<PlayerView>("Knight"), _spriteAnimator);
+            _levelData.megaBow = new MegaBowController(Inputs.InputResources.Load<MegaBowView>("MegaBow"), _levelData.player.Transform);
         }
 
         private void InstantiateMap()
         {
-            for (int i = 0; i < 4; i++)
+            var root = new GameObject($"[Walls]").transform;
+            for (int i = 0; i < quantityHorisontalWalls; i++)
             {
                 var wall = new GameObject().AddComponent<SpriteRenderer>();
+                wall.transform.SetParent(root);
                 wall.name = "Wall";
                 wall.transform.position = new Vector2(startPosition.x + i, startPosition.y);
                 wall.sprite = _wallSprite;
