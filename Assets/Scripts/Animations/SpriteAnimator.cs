@@ -32,9 +32,9 @@ namespace Platformer.Animations
                 }
             }
         }
-        private readonly SpriteAnimations _config;
+        private readonly SpriteAnimationsConfig _config;
         private readonly Dictionary<SpriteRenderer, Animation> _activeAnimations = new ();
-        public SpriteAnimator(SpriteAnimations config)
+        public SpriteAnimator(SpriteAnimationsConfig config)
         {
             _config = config;
         }
@@ -64,6 +64,7 @@ namespace Platformer.Animations
                 });
             }
         }
+           
         public void StopAnimation(SpriteRenderer sprite)
         {
             if (_activeAnimations.ContainsKey(sprite))

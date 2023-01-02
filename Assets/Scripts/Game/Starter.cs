@@ -1,37 +1,38 @@
 using Platformer.Animations;
+using Platformer.Objects.Player;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Platformer.Game
 {
-    public class Starter : MonoBehaviour
-    {        
-        [SerializeField] private float speed = 0.5f;
+    public sealed class Starter : MonoBehaviour
+    {               
         [SerializeField] private Sprite wallSprite;
 
-        private LevelData _levelData = new();
+        private readonly LevelData _levelData = new();
 
         private SpriteAnimator _spriteAnimator;
-        private SpriteAnimations _animations;
+        private SpriteAnimationsConfig _animations;
        
         private void Awake()
         {           
-            _animations = Inputs.InputResources.Load<SpriteAnimations>(nameof(SpriteAnimations));
+            _animations = Inputs.InputResources.Load<SpriteAnimationsConfig>("SpriteAnimations");
             _spriteAnimator = new SpriteAnimator(_animations);
 
-            new Application(_levelData, wallSprite);
+            new Application(_levelData, _spriteAnimator, wallSprite);
 
-            _spriteAnimator.StartAnimation(_levelData.player, Track.Idle, true, speed);
         }
         private void Update()
         {
+            _levelData.player.Update();
+            _levelData.megaBow.Update();
             _spriteAnimator.Update();
         }
-        private void FixedUpdate()
-        {
+        //private void FixedUpdate()
+        //{
 
-        }
+        //}
         private void OnDestroy()
         {
             _spriteAnimator.Dispose();       

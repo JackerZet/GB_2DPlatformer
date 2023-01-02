@@ -7,11 +7,12 @@ namespace Platformer.Animations
     public enum Track
     {
         Run,
-        Jump,
+        JumpStart,
+        JumpStaying,
         Idle
     }
-    [CreateAssetMenu(fileName = "SpriteAnimations", menuName = "Configs/Sprite animations", order = 1)]
-    public class SpriteAnimations : ScriptableObject
+    [CreateAssetMenu(fileName = "SpriteAnimations", menuName = "Configs/Sprite animations", order = 0)]
+    public sealed class SpriteAnimationsConfig : ScriptableObject
     {
         [Serializable]
         public class SpritesSequence
@@ -19,6 +20,6 @@ namespace Platformer.Animations
             public Track Track;
             public List<Sprite> Sprites = new();
         }
-        public List<SpritesSequence> Sequences = new();
+        [field: SerializeField] public List<SpritesSequence> Sequences { get; private set; } = new();
     }
 }

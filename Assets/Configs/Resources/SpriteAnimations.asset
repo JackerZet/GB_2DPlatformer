@@ -12,22 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d6508038aefd654882cedc135adb4f2, type: 3}
   m_Name: SpriteAnimations
   m_EditorClassIdentifier: 
-  Sequences:
-  - Track: 0
-    Sprites:
-    - {fileID: 1637622336, guid: 1d6002f0a2aed24418d10036299c47c2, type: 3}
-    - {fileID: 469796255, guid: 1d6002f0a2aed24418d10036299c47c2, type: 3}
-    - {fileID: 2018349991, guid: 1d6002f0a2aed24418d10036299c47c2, type: 3}
-    - {fileID: 1789787322, guid: 1d6002f0a2aed24418d10036299c47c2, type: 3}
-  - Track: 1
-    Sprites:
-    - {fileID: -493013234, guid: 1d6002f0a2aed24418d10036299c47c2, type: 3}
-    - {fileID: -2097730029, guid: 1d6002f0a2aed24418d10036299c47c2, type: 3}
-    - {fileID: 751400635, guid: 1d6002f0a2aed24418d10036299c47c2, type: 3}
-    - {fileID: 504105103, guid: 1d6002f0a2aed24418d10036299c47c2, type: 3}
-  - Track: 2
+  <Sequences>k__BackingField:
+  - Track: 3
     Sprites:
     - {fileID: -493013234, guid: 1d6002f0a2aed24418d10036299c47c2, type: 3}
     - {fileID: 751400635, guid: 1d6002f0a2aed24418d10036299c47c2, type: 3}
     - {fileID: 504105103, guid: 1d6002f0a2aed24418d10036299c47c2, type: 3}
     - {fileID: -1160542318, guid: 1d6002f0a2aed24418d10036299c47c2, type: 3}
+  - Track: 0
+    Sprites:
+    - {fileID: 1789787322, guid: 1d6002f0a2aed24418d10036299c47c2, type: 3}
+    - {fileID: 1637622336, guid: 1d6002f0a2aed24418d10036299c47c2, type: 3}
+    - {fileID: 469796255, guid: 1d6002f0a2aed24418d10036299c47c2, type: 3}
+    - {fileID: 2018349991, guid: 1d6002f0a2aed24418d10036299c47c2, type: 3}
+  - Track: 1
+    Sprites: []
+  - Track: 2
+    Sprites:
+    - {fileID: -2097730029, guid: 1d6002f0a2aed24418d10036299c47c2, type: 3}
